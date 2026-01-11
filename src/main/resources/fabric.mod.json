@@ -3,15 +3,14 @@
 	"id": "optionsapi",
 	"version": "${version}",
 	"name": "Vanilla Options API",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Vanilla Options API",
 	"authors": [
-		"Me!"
+		"Embin"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/NotEmbin/vanillaoptionsapi"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/optionsapi/icon.png",
 	"environment": "*",
 	"entrypoints": {
