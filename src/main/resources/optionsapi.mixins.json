@@ -3,7 +3,7 @@
 	"package": "embinmc.mod.optionsapi.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"ExampleMixin"
+      "OptionsMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

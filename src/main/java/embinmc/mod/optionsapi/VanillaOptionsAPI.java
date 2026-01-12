@@ -2,16 +2,21 @@ package embinmc.mod.optionsapi;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.minecraft.client.OptionInstance;
+import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class VanillaOptionsAPI implements ModInitializer {
 	public static final String MOD_ID = "optionsapi";
-
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final Map<Identifier, Supplier<OptionInstance<?>>> OPTIONS = HashMap.newHashMap(32);
+    public static final Map<Identifier, OptionsMenuLocation> OPTIONS_MENU = HashMap.newHashMap(32);
 
 	@Override
 	public void onInitialize() {
@@ -21,4 +26,9 @@ public class VanillaOptionsAPI implements ModInitializer {
 
 		LOGGER.info("Hello Fabric world!");
 	}
+
+    public static void register(Identifier identifier, OptionsMenuLocation menu, Supplier<OptionInstance<?>> supplier) {
+        VanillaOptionsAPI.OPTIONS.put(identifier, supplier);
+        VanillaOptionsAPI.OPTIONS_MENU.put(identifier, menu);
+    }
 }
