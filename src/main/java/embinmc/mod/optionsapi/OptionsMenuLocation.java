@@ -1,5 +1,7 @@
 package embinmc.mod.optionsapi;
 
 public enum OptionsMenuLocation {
-    ACCESSIBILITY;
+    ACCESSIBILITY,
+    CHAT,
+    NONE
 }
