@@ -1,15 +1,24 @@
 {
-	"required": true,
-	"package": "embinmc.mod.optionsapi.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"mixins": [
-		"AccessibilityScreenMixin",
-		"OptionsMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "embinmc.mod.optionsapi.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "AccessibilityScreenMixin",
+    "ChatScreenMixin",
+    "ControlsScreenMixin",
+    "MouseScreenMixin",
+    "OnlineScreenMixin",
+    "OptionsMixin",
+    "OptionsScreenMixin",
+    "SkinScreenMixin",
+    "SoundScreenMixin",
+    "VideoScreenMixin"
+  ]
 }

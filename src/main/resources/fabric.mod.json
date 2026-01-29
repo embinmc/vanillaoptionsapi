@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "optionsapi",
+	"id": "voptionsapi",
 	"version": "${version}",
 	"name": "Vanilla Options API",
-	"description": "Vanilla Options API",
+	"description": "Custom settings using Vanilla's systems",
 	"authors": [
 		"Embin"
 	],
@@ -11,10 +11,10 @@
 		"sources": "https://github.com/NotEmbin/vanillaoptionsapi"
 	},
 	"license": "MIT",
-	"icon": "assets/optionsapi/icon.png",
-	"environment": "*",
+	"icon": "assets/voptionsapi/icon.png",
+	"environment": "client",
 	"entrypoints": {
-		"main": [
+		"client": [
 			"embinmc.mod.optionsapi.VanillaOptionsAPI"
 		]
 	},
