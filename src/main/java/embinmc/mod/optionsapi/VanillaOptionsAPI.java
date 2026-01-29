@@ -2,12 +2,10 @@ package embinmc.mod.optionsapi;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.OptionInstance;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -16,7 +14,13 @@ import java.util.function.Supplier;
 public class VanillaOptionsAPI implements ClientModInitializer {
     public static final String MOD_ID = "voptionsapi";
     private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-    private static final OptionInstance<Boolean> TEST_SETTING = OptionInstance.createBoolean("voapi_test", false);
+    private static final OptionInstance<OptionsMenuLocation> TEST_SETTING = OptionUtil.enumSlider(
+            "options.voptionsapi.test_setting",
+            (caption, value) -> caption.plainCopy().append(": ").append(value.getSerializedName()),
+            OptionsMenuLocation::values,
+            OptionsMenuLocation.CODEC,
+            OptionsMenuLocation.NONE
+    );
     static final Map<Identifier, Supplier<OptionInstance<?>>> OPTIONS = HashMap.newHashMap(32);
     private static final Map<OptionsMenuLocation, List<Identifier>> OPTIONS_MENU = Util.make(HashMap.newHashMap(32), map -> {
         for (OptionsMenuLocation menuLocation : OptionsMenuLocation.values()) {
@@ -35,11 +39,11 @@ public class VanillaOptionsAPI implements ClientModInitializer {
      * @param supplier Supplier for the {@link OptionInstance} you want to register.
      * @return The supplier given.
      */
-    public static <T> Supplier<OptionInstance<@NotNull T>> register(Identifier identifier, OptionsMenuLocation menu, Supplier<OptionInstance<@NotNull T>> supplier) {
-        VanillaOptionsAPI.OPTIONS.put(identifier, supplier::get);
+    public static Identifier register(Identifier identifier, OptionsMenuLocation menu, Supplier<OptionInstance<?>> supplier) {
+        VanillaOptionsAPI.OPTIONS.put(identifier, supplier);
         VanillaOptionsAPI.OPTIONS_MENU.get(menu).add(identifier);
         VanillaOptionsAPI.LOGGER.info("Registering setting {}", identifier);
-        return supplier;
+        return identifier;
     }
 
     @Override
@@ -56,12 +60,11 @@ public class VanillaOptionsAPI implements ClientModInitializer {
             registerTest("test", OptionsMenuLocation.VIDEO, Identifier.DEFAULT_NAMESPACE);
             registerTest("test2", OptionsMenuLocation.VIDEO, Identifier.DEFAULT_NAMESPACE);
             registerTest("test3", OptionsMenuLocation.VIDEO, Identifier.REALMS_NAMESPACE);
-            registerTest("test4", OptionsMenuLocation.VIDEO, Identifier.REALMS_NAMESPACE);
             registerTest("test5", OptionsMenuLocation.VIDEO, Identifier.DEFAULT_NAMESPACE);
         }
     }
 
-    private static OptionInstance<Boolean> testSetting() {
+    private static OptionInstance<OptionsMenuLocation> testSetting() {
         return VanillaOptionsAPI.TEST_SETTING;
     }
 
