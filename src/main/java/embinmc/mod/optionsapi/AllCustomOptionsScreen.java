@@ -10,8 +10,8 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class AllCustomOptionsScreen extends OptionsSubScreen {
-    public static final Component BUTTON = Component.translatable("options.voptionsapi.all_options");
-    private static final Component TITLE = Component.translatable("options.voptionsapi.all_options.title");
+    public static final Component BUTTON = Component.translatable("options.vanillaoptionsapi.all_options");
+    private static final Component TITLE = Component.translatable("options.vanillaoptionsapi.all_options.title");
 
     public AllCustomOptionsScreen(Screen lastScreen) {
         super(lastScreen, Minecraft.getInstance().options, TITLE);

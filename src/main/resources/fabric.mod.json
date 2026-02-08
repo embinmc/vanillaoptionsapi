@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "voptionsapi",
+	"id": "vanillaoptionsapi",
 	"version": "${version}",
 	"name": "Vanilla Options API",
 	"description": "Custom settings using Vanilla's systems",
@@ -11,7 +11,7 @@
 		"sources": "https://github.com/NotEmbin/vanillaoptionsapi"
 	},
 	"license": "MIT",
-	"icon": "assets/voptionsapi/icon.png",
+	"icon": "assets/vanillaoptionsapi/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
@@ -26,6 +26,6 @@
 		"fabricloader": ">=0.18.4",
 		"minecraft": ">=26.1-alpha.4",
 		"java": ">=25",
-		"fabric-api": "*"
+		"fabric-api": ">=0.142.1+26.1"
 	}
 }

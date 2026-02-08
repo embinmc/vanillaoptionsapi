@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 public class OptionUtil {
     public static Component percentValueLabel(final Component caption, final double value) {
-        return Component.translatable("options.percent_value", caption, (int) (value * (double) 100.0F));
+        return Component.translatable("options.percent_value", caption, (int) (value * 100D));
     }
 
     public static <T> OptionInstance<T> enumOption(String captionId, OptionInstance.TooltipSupplier<T> tooltipSupplier, OptionInstance.CaptionBasedToString<T> toString, Supplier<T[]> values, Codec<T> codec, T _default, Consumer<T> onUpdate) {

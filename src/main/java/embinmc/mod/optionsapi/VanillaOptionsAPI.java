@@ -12,10 +12,10 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 public class VanillaOptionsAPI implements ClientModInitializer {
-    public static final String MOD_ID = "voptionsapi";
+    public static final String MOD_ID = "vanillaoptionsapi";
     private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     private static final OptionInstance<OptionsMenuLocation> TEST_SETTING = OptionUtil.enumSlider(
-            "options.voptionsapi.test_setting",
+            "options.vanillaoptionsapi.test_setting",
             (caption, value) -> caption.plainCopy().append(": ").append(value.getSerializedName()),
             OptionsMenuLocation::values,
             OptionsMenuLocation.CODEC,
@@ -37,7 +37,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
      * @param identifier The {@link Identifier} your setting uses for saving and loading.
      * @param menu The menu you want the setting to appear in.
      * @param supplier Supplier for the {@link OptionInstance} you want to register.
-     * @return The supplier given.
+     * @return The {@link Identifier} of the registered option.
      */
     public static Identifier register(Identifier identifier, OptionsMenuLocation menu, Supplier<OptionInstance<?>> supplier) {
         VanillaOptionsAPI.OPTIONS.put(identifier, supplier);
