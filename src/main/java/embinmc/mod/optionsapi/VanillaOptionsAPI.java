@@ -40,7 +40,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
     public static Identifier register(Identifier identifier, OptionsMenuLocation menu, Supplier<OptionInstance<?>> supplier) {
         VanillaOptionsAPI.OPTIONS.put(identifier, supplier);
         VanillaOptionsAPI.OPTIONS_MENU.get(menu).add(identifier);
-        if (VanillaOptionsAPI.DEBUG) VanillaOptionsAPI.LOGGER.info("Registering setting {}", identifier);
+        VanillaOptionsAPI.LOGGER.debug("Registering setting {}", identifier);
         return identifier;
     }
 
