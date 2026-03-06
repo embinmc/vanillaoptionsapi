@@ -11,15 +11,13 @@ public enum OptionsMenuLocation implements StringRepresentable {
      */
     NONE("none"),
 
-    ACCESSIBILITY("accessibility"), CHAT("chat"),
-
-    /**
-     * Settings will appear BEFORE the vanilla "Raw Input" mouse setting.
-     */
+    ACCESSIBILITY("accessibility"),
+    CHAT("chat"),
     MOUSE("mouse"),
-
-    SKIN("skin"), SOUNDS("sounds"),
-    CONTROLS("controls"), ONLINE("online"),
+    SKIN("skin"),
+    SOUNDS("sounds"),
+    CONTROLS("controls"),
+    ONLINE("online"),
 
     /**
      * Settings will appear under a sub category with the name of the mod that registered it.

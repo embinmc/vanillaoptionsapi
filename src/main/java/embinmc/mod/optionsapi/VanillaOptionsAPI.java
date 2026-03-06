@@ -16,22 +16,20 @@ public class VanillaOptionsAPI implements ClientModInitializer {
     private static final Logger LOGGER = LogManager.getLogger(MOD_ID);
     private static final OptionInstance<OptionsMenuLocation> TEST_SETTING = OptionUtil.enumSlider(
             "options.vanillaoptionsapi.test_setting",
-            (caption, value) -> caption.plainCopy().append(": ").append(value.getSerializedName()),
-            OptionsMenuLocation::values,
-            OptionsMenuLocation.CODEC,
-            OptionsMenuLocation.NONE
+            (caption, value) -> caption.copy().append(": ").append(value.getSerializedName()),
+            OptionsMenuLocation::values, OptionsMenuLocation.CODEC, OptionsMenuLocation.NONE
     );
-    static final Map<Identifier, Supplier<OptionInstance<?>>> OPTIONS = HashMap.newHashMap(32);
-    private static final Map<OptionsMenuLocation, List<Identifier>> OPTIONS_MENU = Util.make(HashMap.newHashMap(32), map -> {
+    static final Map<Identifier, Supplier<OptionInstance<?>>> OPTIONS = HashMap.newHashMap(OptionsMenuLocation.values().length);
+    private static final Map<OptionsMenuLocation, List<Identifier>> OPTIONS_MENU = Util.make(HashMap.newHashMap(OptionsMenuLocation.values().length), map -> {
         for (OptionsMenuLocation menuLocation : OptionsMenuLocation.values()) {
-            map.put(menuLocation, new ArrayList<>(16));
+            map.put(menuLocation, new ArrayList<>(menuLocation == OptionsMenuLocation.NONE ? 64 : 24));
         }
     });
-    private static final boolean DEBUG = true;
+    public static boolean DEBUG = true;
 
     /**
      * Registers a {@link OptionInstance} to save, load, and appear in a specified menu.
-     * <p>If you don't want your option to appear in any menu, use {@link OptionsMenuLocation#NONE}.
+     * <p>If you don't want your option to appear in any vanilla menu, use {@link OptionsMenuLocation#NONE}.
      * <p>The setting will be saved to {@code options.txt} with the name {@code namespace.path}
      *
      * @param identifier The {@link Identifier} your setting uses for saving and loading.
@@ -42,7 +40,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
     public static Identifier register(Identifier identifier, OptionsMenuLocation menu, Supplier<OptionInstance<?>> supplier) {
         VanillaOptionsAPI.OPTIONS.put(identifier, supplier);
         VanillaOptionsAPI.OPTIONS_MENU.get(menu).add(identifier);
-        VanillaOptionsAPI.LOGGER.info("Registering setting {}", identifier);
+        if (VanillaOptionsAPI.DEBUG) VanillaOptionsAPI.LOGGER.info("Registering setting {}", identifier);
         return identifier;
     }
 
