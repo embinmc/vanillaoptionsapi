@@ -25,7 +25,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
             map.put(menuLocation, new ArrayList<>(menuLocation == OptionsMenuLocation.NONE ? 64 : 24));
         }
     });
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
     /**
      * Registers a {@link OptionInstance} to save, load, and appear in a specified menu.
