@@ -10,7 +10,7 @@
 	"contact": {
 		"sources": "https://github.com/NotEmbin/vanillaoptionsapi"
 	},
-	"license": "MIT",
+	"license": "CC0-1.0",
 	"icon": "assets/vanillaoptionsapi/icon.png",
 	"environment": "client",
 	"entrypoints": {
