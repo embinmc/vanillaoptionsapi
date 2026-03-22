@@ -1,5 +1,7 @@
 {
   "options.vanillaoptionsapi.all_options.title": "Mod Options",
-  "options.vanillaoptionsapi.all_options": "Mod Options",
-  "options.vanillaoptionsapi.test_setting": "Test Setting"
+  "options.vanillaoptionsapi.all_options": "Mod Options...",
+  "options.vanillaoptionsapi.test_setting": "Test Setting",
+  "options.vanillaoptionsapi.show_minecraft_settings": "Show Minecraft Settings",
+  "options.vanillaoptionsapi.show_minecraft_settings.tooltip": "Toggle whether or not Minecraft's default settings should appear in the \"Mod Options\" menu"
 }

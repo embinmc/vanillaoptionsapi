@@ -2,7 +2,11 @@ package embinmc.mod.optionsapi;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Util;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -42,7 +46,7 @@ public final class VoapiUtils {
     }
 
     public static Map<String, List<Supplier<OptionInstance<?>>>> optionsByNamespace() {
-        return Util.make(HashMap.newHashMap(VanillaOptionsAPI.OPTIONS.size()), map -> {
+        return Util.make(LinkedHashMap.newLinkedHashMap(VanillaOptionsAPI.OPTIONS.size()), map -> {
             VanillaOptionsAPI.forEachOption((identifier, optionInstanceSupplier) -> {
                 String namespace = identifier.getNamespace();
                 if (!map.containsKey(namespace)) {
@@ -54,7 +58,7 @@ public final class VoapiUtils {
     }
 
     public static Map<String, List<Supplier<OptionInstance<?>>>> optionsByNamespaceInMenu(OptionsMenuLocation location) {
-        return Util.make(HashMap.newHashMap(16), map -> {
+        return Util.make(LinkedHashMap.newLinkedHashMap(16), map -> {
             List<Identifier> optionsLocationMap = VanillaOptionsAPI.getIdsForMenu(location);
             VanillaOptionsAPI.forEachOption((identifier, optionInstanceSupplier) -> {
                 String namespace = identifier.getNamespace();
@@ -66,5 +70,10 @@ public final class VoapiUtils {
                 }
             });
         });
+    }
+
+    public static Button openScreenButton(Component message, Supplier<Screen> toScreen) {
+        Minecraft minecraft = Minecraft.getInstance();
+        return Button.builder(message, (button) -> minecraft.setScreen(toScreen.get())).build();
     }
 }

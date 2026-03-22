@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public class AllCustomOptionsScreen extends OptionsSubScreen {
     public static final Component BUTTON = Component.translatable("options.vanillaoptionsapi.all_options");
-    private static final Component TITLE = Component.translatable("options.vanillaoptionsapi.all_options.title");
+    public static final Component TITLE = Component.translatable("options.vanillaoptionsapi.all_options.title");
 
     public AllCustomOptionsScreen(Screen lastScreen) {
         super(lastScreen, Minecraft.getInstance().options, TITLE);
@@ -19,10 +19,20 @@ public class AllCustomOptionsScreen extends OptionsSubScreen {
 
     @Override
     protected void addOptions() {
+        this.withLayouts(VanillaOptionsAPI.MENU_LAYOUTS);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.withLayouts(VanillaOptionsAPI.ON_TICK);
+    }
+
+    public void withLayouts(Map<String, VanillaOptionsAPI.MenuLayout> menuLayouts) {
         Map<String, List<Supplier<OptionInstance<?>>>> optionByNamespace = VoapiUtils.optionsByNamespace();
-        optionByNamespace.forEach((namespace, options) -> {
-            this.list.addHeader(Component.literal(VoapiUtils.modNameElseId(namespace)));
-            this.list.addSmall(options.stream().map(Supplier::get).toArray(OptionInstance<?>[]::new));
+        menuLayouts.forEach((namespace, menuLayout) -> {
+            List<Supplier<OptionInstance<?>>> options = optionByNamespace.get(namespace);
+            menuLayout.consume(this, this.list, options != null ? options : List.of());
         });
     }
 }
