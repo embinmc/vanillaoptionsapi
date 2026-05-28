@@ -23,9 +23,9 @@
 	],
     "accessWidener": "vanillaoptionsapi.accesswidener",
 	"depends": {
-		"fabricloader": ">=0.18.4",
-		"minecraft": ">=26.1-pre.3",
+		"fabricloader": ">=0.19.0",
+		"minecraft": ">=26.2-pre.2",
 		"java": ">=25",
-		"fabric-api": ">=0.143.14+26.1"
+		"fabric-api": ">=0.150.0+26.2"
 	}
 }

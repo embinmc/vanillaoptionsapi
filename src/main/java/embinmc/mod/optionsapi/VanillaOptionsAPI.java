@@ -95,7 +95,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         if (VanillaOptionsAPI.DEBUG) {
-            register(Identifier.fromNamespaceAndPath(MOD_ID, "test"), OptionsMenuLocation.NONE, VanillaOptionsAPI::testSetting);
+            register(Identifier.fromNamespaceAndPath(MOD_ID, "test"), OptionsMenuLocation.ONLINE, VanillaOptionsAPI::testSetting);
         }
     }
 
@@ -136,7 +136,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
             return (currentScreen, optionsList, options) -> {
                 Options o = Minecraft.getInstance().options;
                 if (!showMinecraftSettings().get()) return;
-                optionsList.addHeader(Component.literal("Minecraft"));
+                optionsList.addHeader(Component.literal("Minecraft")); // god forbid this needs to say anything but "Minecraft"
                 optionsList.addSmall(List.of(
                         o.fov().createButton(o),
                         VoapiUtils.openScreenButton(
@@ -173,7 +173,7 @@ public class VanillaOptionsAPI implements ClientModInitializer {
                                 Component.translatable("options.resourcepack"),
                                 () -> new PackSelectionScreen(Minecraft.getInstance().getResourcePackRepository(), packRepository -> {
                                     o.updateResourcePacks(packRepository);
-                                    Minecraft.getInstance().setScreen(currentScreen);
+                                    Minecraft.getInstance().setScreenAndShow(currentScreen);
                                 }, Minecraft.getInstance().getResourcePackDirectory(), Component.translatable("resourcePack.title"))
                         ),
                         VoapiUtils.openScreenButton(

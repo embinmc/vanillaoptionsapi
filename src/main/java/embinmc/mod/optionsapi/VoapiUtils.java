@@ -74,6 +74,6 @@ public final class VoapiUtils {
 
     public static Button openScreenButton(Component message, Supplier<Screen> toScreen) {
         Minecraft minecraft = Minecraft.getInstance();
-        return Button.builder(message, (button) -> minecraft.setScreen(toScreen.get())).build();
+        return Button.builder(message, (button) -> minecraft.setScreenAndShow(toScreen.get())).build();
     }
 }

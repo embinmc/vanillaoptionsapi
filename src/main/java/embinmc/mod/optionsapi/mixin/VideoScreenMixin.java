@@ -30,7 +30,7 @@ public abstract class VideoScreenMixin extends OptionsSubScreen {
     @Inject(method = "addOptions", at = @At(value = "TAIL"))
     private void options_fix(CallbackInfo ci) {
         List<Identifier> optionIds = VanillaOptionsAPI.getIdsForMenu(OptionsMenuLocation.VIDEO);
-        if (!optionIds.isEmpty()) {
+        if (!optionIds.isEmpty() && this.list != null) {
             Map<String, List<Supplier<OptionInstance<?>>>> options = VoapiUtils.optionsByNamespaceInMenu(OptionsMenuLocation.VIDEO);
             options.forEach((namespace, optionSuppliers) -> {
                 this.list.addHeader(Component.literal(VoapiUtils.modNameElseId(namespace)));
